@@ -46,6 +46,22 @@ AWS Secrets Manager (stores Gmail OAuth JSON)
 
 ---
 
+## 🖼️ Screenshots
+
+Add screenshots to `docs/` and they’ll render here on GitHub.
+
+Suggested filenames:
+
+- `docs/search.png` — search screen
+- `docs/results.png` — results + action buttons
+
+Once you add them, these links will work:
+
+![Search UI](docs/search.png)
+![Results UI](docs/results.png)
+
+---
+
 ## 🔌 API Endpoints
 
 ### Search emails
