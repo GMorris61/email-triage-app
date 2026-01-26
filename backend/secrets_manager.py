@@ -1,4 +1,5 @@
 import json
+import os
 import boto3
 from google.oauth2.credentials import Credentials
 
@@ -10,8 +11,16 @@ def get_gmail_credentials() -> Credentials:
     Retrieve Gmail OAuth credentials stored in AWS Secrets Manager
     and return a Credentials object usable by the Gmail API client.
     """
-    secret_name = "gmail-credentials"  # Replace with your actual secret name
-    region_name = "us-east-1"           # Replace with your region if different
+    # Configurable via environment variables (with sensible defaults)
+    # - GMAIL_SECRET_NAME: AWS Secrets Manager secret name containing Gmail OAuth JSON
+    # - AWS_REGION / AWS_DEFAULT_REGION: region for Secrets Manager
+    secret_name = os.getenv("GMAIL_SECRET_NAME", "gmail-credentials")
+    region_name = (
+        os.getenv("AWS_REGION")
+        or os.getenv("AWS_DEFAULT_REGION")
+        or os.getenv("GMAIL_SECRET_REGION")
+        or "us-east-1"
+    )
 
     # Create a Secrets Manager client
     client = boto3.client("secretsmanager", region_name=region_name)
