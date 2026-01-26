@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Triage Search</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Email Triage</h1>
+    <p>Search your Gmail inbox by subject keyword:</p>
+
+    <input 
+      type="text" 
+      id="keywordInput" 
+      placeholder="e.g. turbotax, invoice, receipt" 
+    />
+
+<button id="searchButton" onclick="searchEmails()">Search</button>
+
+    <div id="statusMessage"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

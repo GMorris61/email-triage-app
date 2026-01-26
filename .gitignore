@@ -1,0 +1,45 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.pdb
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.pyre/
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Node / front-end
+node_modules/
+dist/
+build/
+
+# Env files
+.env
+.env.*
+
+# Common secret/credential artifacts
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+client_secret*.json
+token*.json
+
+# Logs
+*.log

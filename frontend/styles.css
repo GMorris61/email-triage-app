@@ -1,0 +1,89 @@
+/* -----------------------------
+   GLOBAL STYLES
+------------------------------*/
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Centered container */
+.container {
+  max-width: 600px;
+  margin: 60px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+/* -----------------------------
+   INPUT + BUTTONS
+------------------------------*/
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #4a90e2;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 8px 5px;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #357ab8;
+}
+
+/* -----------------------------
+   EMAIL LIST
+------------------------------*/
+.email-list {
+  list-style: none;
+  padding: 0;
+}
+
+.email-list li {
+  background: #f0f4f8;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border-left: 4px solid #4a90e2;
+}
+
+/* -----------------------------
+   STATUS + ACTION MESSAGES
+------------------------------*/
+#statusMessage,
+#actionMessage {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.action-message {
+  margin-top: 25px;
+  padding: 10px;
+  background: #eaf5ff;
+  border-radius: 8px;
+  border: 1px solid #bcdfff;
+}
