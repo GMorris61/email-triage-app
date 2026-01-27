@@ -1,7 +1,23 @@
 import json
 import os
+import urllib.request
+from typing import Optional
 import boto3
 from google.oauth2.credentials import Credentials
+
+
+def _detect_region_from_ec2_metadata() -> Optional[str]:
+    """Best-effort region detection on EC2 via IMDS; returns None if unavailable."""
+    try:
+        req = urllib.request.Request(
+            "http://169.254.169.254/latest/dynamic/instance-identity/document"
+        )
+        with urllib.request.urlopen(req, timeout=1) as resp:
+            payload = json.loads(resp.read().decode("utf-8"))
+        region = payload.get("region")
+        return region if isinstance(region, str) and region else None
+    except Exception:
+        return None
 
 # -----------------------------
 # RETRIEVE SECRET FROM AWS
@@ -19,6 +35,7 @@ def get_gmail_credentials() -> Credentials:
         os.getenv("AWS_REGION")
         or os.getenv("AWS_DEFAULT_REGION")
         or os.getenv("GMAIL_SECRET_REGION")
+        or _detect_region_from_ec2_metadata()
         or "us-east-1"
     )
 
