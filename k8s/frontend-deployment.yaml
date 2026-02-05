@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-frontend
+  labels:
+    app: email-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email-frontend
+  template:
+    metadata:
+      labels:
+        app: email-frontend
+    spec:
+      containers:
+        - name: email-frontend
+          image: 730335297276.dkr.ecr.us-east-1.amazonaws.com/email-frontend:latest
+          ports:
+            - containerPort: 80

@@ -1,4 +1,10 @@
 // -----------------------------
+// CONFIG
+// -----------------------------
+const API_BASE_URL = "http://email-backend-service:8080";
+
+
+// -----------------------------
 // SEARCH EMAILS
 // -----------------------------
 async function searchEmails() {
@@ -13,7 +19,9 @@ async function searchEmails() {
   statusMessage.textContent = "Searching...";
 
   try {
-    const response = await fetch(`http://localhost:8080/email/search?keyword=${encodeURIComponent(keyword)}`);
+    const response = await fetch(
+      `${API_BASE_URL}/email/search?keyword=${encodeURIComponent(keyword)}`
+    );
 
     if (!response.ok) {
       throw new Error("Backend returned an error");
@@ -55,23 +63,22 @@ function loadResults() {
 
   // Build results list
   let html = `<h2>Results for "${data.keyword}"</h2>`;
-
   html += `<ul class="email-list">`;
 
   data.results.forEach(email => {
     html += `
-      <li>
-        <strong>From:</strong> ${email.sender}<br>
-        <strong>Subject:</strong> ${email.subject}<br>
-        <button onclick="performAction('${email.id}', 'trash')">Trash</button>
-        <button onclick="performAction('${email.id}', 'archive')">Archive</button>
-        <button onclick="performAction('${email.id}', 'dry-run')">Dry Run</button>
-      </li>
-    `;
+  <li id="email-${email.id}">
+    <strong>From:</strong> ${email.sender}<br>
+    <strong>Subject:</strong> ${email.subject}<br>
+    <button onclick="performAction('${email.id}', 'trash')">Trash</button>
+    <button onclick="performAction('${email.id}', 'archive')">Archive</button>
+    <button onclick="performAction('${email.id}', 'dry-run')">Dry Run</button>
+  </li>
+`;
+
   });
 
   html += `</ul>`;
-
   resultsContainer.innerHTML = html;
 }
 
@@ -84,7 +91,7 @@ async function performAction(emailId, action) {
   actionMessage.textContent = `Performing ${action}...`;
 
   try {
-    const response = await fetch("http://localhost:8080/email/action", {
+    const response = await fetch(`${API_BASE_URL}/email/action`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -99,6 +106,12 @@ async function performAction(emailId, action) {
 
     const data = await response.json();
     actionMessage.textContent = data.result;
+
+    // ⭐ Remove the email from the page
+    const emailElement = document.getElementById(`email-${emailId}`);
+    if (emailElement) {
+      emailElement.remove();
+    }
 
   } catch (error) {
     actionMessage.textContent = "Error performing action.";

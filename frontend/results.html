@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Email Triage Results</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Email Search Results</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body onload="loadResults()">
+
   <div class="container">
-    <h1>Search Results</h1>
 
-    <div id="resultsContainer"></div>
+    <h1>Email Search Results</h1>
 
-    <div id="actionMessage" class="action-message"></div>
+    <div id="resultsContainer">
+      <!-- Results will be injected here by app.js -->
+    </div>
 
-    <button onclick="window.location.href='index.html'">Back to Search</button>
+    <div id="actionMessage" class="status-message"></div>
+
+    <br>
+    <button onclick="window.location.href='index.html'">New Search</button>
+
   </div>
 
   <script src="app.js"></script>
