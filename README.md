@@ -250,6 +250,58 @@ Add screenshots of:
 
 ---
 
+## ☸️ Deployment (EKS / Kubernetes)
+
+This repo includes Kubernetes manifests in `k8s/` for deploying to Amazon EKS.
+
+### Prereqs
+
+- An EKS cluster created already
+- `kubectl` configured for the cluster
+- Images pushed to ECR (the manifests reference ECR images)
+
+### 1) Connect kubectl to your EKS cluster
+
+```bash
+aws eks update-kubeconfig --region <region> --name <cluster-name>
+kubectl get nodes
+```
+
+### 2) Deploy the app
+
+```bash
+kubectl apply -f k8s/
+kubectl get deploy,svc
+```
+
+### 3) Get the frontend URL
+
+The frontend service is a LoadBalancer:
+
+```bash
+kubectl get svc email-frontend-service
+```
+
+When `EXTERNAL-IP` (or hostname) appears, open it in your browser.
+
+### 4) Backend access (important)
+
+In the current manifests, the backend service is `ClusterIP` (internal).
+That means the hostname `email-backend-service` only resolves **inside the cluster**, not from your laptop browser.
+
+Options:
+
+- Recommended: add an Ingress (or make the backend a LoadBalancer) and set the frontend API base URL to that public URL.
+- Dev/testing: `kubectl port-forward svc/email-backend-service 8080:8080` and then run the frontend locally against `http://localhost:8080`.
+
+### Cleanup
+
+```bash
+kubectl delete -f k8s/
+```
+
+---
+
 ## 🛡️ Security notes
 
 - Do **not** commit credentials/tokens.
