@@ -1,7 +1,8 @@
 // -----------------------------
 // CONFIG
 // -----------------------------
-const API_BASE_URL = "http://email-backend-service";
+const API_BASE_URL = "http://ecs.gotmor.com";
+
 
 
 // -----------------------------
