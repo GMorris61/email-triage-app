@@ -18,4 +18,4 @@ spec:
         - name: email-backend
           image: 730335297276.dkr.ecr.us-east-1.amazonaws.com/email-backend:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80

@@ -1,7 +1,7 @@
 // -----------------------------
 // CONFIG
 // -----------------------------
-const API_BASE_URL = "http://email-backend-service:8080";
+const API_BASE_URL = "http://email-backend-service";
 
 
 // -----------------------------
